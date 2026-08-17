@@ -1,21 +1,35 @@
 from fastapi import FastAPI
 
+from app.api.agents import router as agents_router
+
 
 app = FastAPI(
-    title="AI Notification Service",
+    title="AI Destekli Bildirim Servisi",
     version="0.1.0",
+    description=(
+        "Yapay zekâ destekli e-posta ve sistem bildirimi servisi."
+    ),
 )
 
 
-@app.get("/")
+app.include_router(agents_router)
+
+
+@app.get(
+    "/",
+    summary="Servis bilgisi",
+)
 def read_root():
     return {
-        "message": "AI Notification Service is running",
+        "mesaj": "AI Destekli Bildirim Servisi çalışıyor.",
     }
 
 
-@app.get("/health")
+@app.get(
+    "/health",
+    summary="Servis sağlık kontrolü",
+)
 def health_check():
     return {
-        "status": "ok",
+        "durum": "çalışıyor",
     }
