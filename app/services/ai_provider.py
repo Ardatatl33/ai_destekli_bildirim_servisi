@@ -38,6 +38,10 @@ class OllamaProvider:
             "http://localhost:11434",
         )
 
+        self.temperature = float(
+            os.getenv("OLLAMA_TEMPERATURE", "0.2")
+        )
+
         self.client = Client(
             host=self.host,
         )
@@ -61,6 +65,9 @@ class OllamaProvider:
                     "content": user_prompt,
                 },
             ],
+            options={
+                "temperature": self.temperature,
+            },
         )
 
         return response["message"]["content"]
