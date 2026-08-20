@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from app.api.jobs import router as jobs_router
 from app.api.agents import router as agents_router
+from app.api.runner import router as runner_router
 
 
 app = FastAPI(
@@ -15,6 +16,7 @@ app = FastAPI(
 
 app.include_router(agents_router)
 app.include_router(jobs_router)
+app.include_router(runner_router)
 
 
 @app.get(

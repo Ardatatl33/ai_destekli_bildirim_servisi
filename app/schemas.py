@@ -84,3 +84,12 @@ class NotificationJobResponse(BaseModel):
     model_config = ConfigDict(
         from_attributes=True,
     )
+
+
+class PendingJobsRunResponse(BaseModel):
+    """Pending job çalıştırma sonucunu temsil eder."""
+
+    message: str
+    processed_count: int
+    sent_count: int
+    failed_count: int

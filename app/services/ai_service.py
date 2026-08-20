@@ -76,6 +76,10 @@ class NotificationAIService:
             "seçenek 2",
             "hangi seçeneği",
             "size nasıl yardımcı olabilirim",
+            "bugün",
+            "yarın",
+            "yakında",
+            "sizi bilgilendiririz",
         )
 
         if any(
@@ -85,6 +89,12 @@ class NotificationAIService:
             return False
 
         if "takip numara" in lowered_message:
+            if not input_data.get("tracking_number"):
+                return False
+
+        # Takip numarası verilmediyse teslimatın takip edilebildiğini
+        # ima eden ifadeleri de güvenli kabul etmiyoruz.
+        if "takip" in lowered_message:
             if not input_data.get("tracking_number"):
                 return False
 
