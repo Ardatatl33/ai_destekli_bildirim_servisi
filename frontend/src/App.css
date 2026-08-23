@@ -1,0 +1,19 @@
+.form-input {
+  width: 100%;
+  border: 1px solid #1e293b;
+  border-radius: 0.75rem;
+  background: #080f1c;
+  padding: 0.7rem 0.85rem;
+  color: #e2e8f0;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.form-input::placeholder { color: #475569; }
+.form-input:focus { border-color: #22d3ee; box-shadow: 0 0 0 3px rgb(34 211 238 / 0.12); }
+.form-input option { background: #0f172a; color: #e2e8f0; }
+
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: #07111f; }
+::-webkit-scrollbar-thumb { border: 2px solid #07111f; border-radius: 999px; background: #334155; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
