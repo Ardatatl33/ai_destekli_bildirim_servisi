@@ -7,6 +7,11 @@ from app.models import NotificationAgent, NotificationJob
 from app.services.ai_service import NotificationAIService
 from app.services.email_service import EmailService
 
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
 
 class NotificationJobProcessor:
     """Bekleyen notification job kayıtlarını işler."""
@@ -33,10 +38,20 @@ class NotificationJobProcessor:
 
         pending_jobs = db.scalars(statement).all()
 
+        logger.info(
+            "İşlenecek bekleyen job sayısı: %d",
+            len(pending_jobs),
+        )
+
         sent_count = 0
         failed_count = 0
 
         for job in pending_jobs:
+            logger.info(
+                "Job işleniyor: id=%d, agent_id=%d",
+                job.id,
+                job.agent_id,
+            )
             try:
                 job.status = "processing"
                 db.commit()
@@ -87,6 +102,10 @@ class NotificationJobProcessor:
 
                 db.commit()
                 sent_count += 1
+                logger.info(
+                    "Job başarıyla tamamlandı: id=%d",
+                    job.id,
+                )
 
             except Exception as error:
                 db.rollback()
@@ -102,6 +121,11 @@ class NotificationJobProcessor:
                     db.commit()
 
                 failed_count += 1
+                logger.error(
+                    "Job başarısız oldu: id=%d, hata=%s",
+                    job.id,
+                    error,
+                )
 
         return {
             "processed_count": len(pending_jobs),

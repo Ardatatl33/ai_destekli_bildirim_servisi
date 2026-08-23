@@ -1,8 +1,13 @@
+import logging
+
 from fastapi import FastAPI
 
 from app.api.jobs import router as jobs_router
 from app.api.agents import router as agents_router
 from app.api.runner import router as runner_router
+
+
+logging.basicConfig(level=logging.INFO)
 
 
 app = FastAPI(
