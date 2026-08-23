@@ -364,18 +364,3 @@ Projenin temel MVP akışı çalışır durumdadır:
 - Başarılı ve başarısız sonuçlar PostgreSQL'e kaydedilir.
 - Otomatik zamanlayıcı, kullanıcı kimlik doğrulama, Alembic migration, CI/CD ve üretim deployment yapılandırması henüz yoktur.
 
-## Gelecek geliştirmeler
-
-- JWT tabanlı kimlik doğrulama ve yetkilendirme
-- Alembic ile veritabanı migration sistemi
-- Celery veya benzeri bir queue/scheduler yapısı
-- Otomatik retry ve backoff mekanizması
-- API'nin Docker container olarak çalıştırılması
-- CI/CD pipeline ve otomatik kalite kontrolleri
-- SMS, WhatsApp veya başka bildirim kanalları
-- Yönetim paneli ve bildirim geçmişi ekranı
-- Daha ayrıntılı loglama ve gözlemleme
-
-## Lisans
-
-Bu repository'de henüz ayrı bir LICENSE dosyası bulunmamaktadır. Kullanım ve dağıtım koşulları ayrıca belirlenene kadar proje eğitim/staj çalışması olarak değerlendirilmelidir.
